@@ -1,0 +1,165 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5184,        156]
+NotebookOptionsPosition[      4673,        133]
+NotebookOutlinePosition[      5029,        149]
+CellTagsIndexPosition[      4986,        146]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Domain Count for CDX Files\n", "Title"],
+ StyleBox["Ian Milligan - 18 June 2013", "Subtitle"]
+}], "Text",
+ CellChangeTimes->{{3.5805496000882187`*^9, 3.580549610043317*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", "\"\</volumes/LaCie/cdx/\>\"", "]"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"CDX", " ", "directory"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"files", "=", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*crawl*cdx.gz\>\"", ",", 
+     RowBox[{"{", "\"\<*\>\"", "}"}], ",", "Infinity"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "output", "=", "\"\</users/ianmilligan/desktop/cdx-results.txt\>\""}], ";", 
+  " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"change", " ", "path"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"str", "=", 
+   RowBox[{"OpenWrite", "[", "output", "]"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "=", "1"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"vals", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"file", ",", "\"\<Data\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"res", "=", 
+       RowBox[{"Cases", "[", 
+        RowBox[{
+         RowBox[{"Tally", "[", 
+          RowBox[{
+           RowBox[{"Drop", "[", 
+            RowBox[{"vals", ",", "1"}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<ca\>\"", ",", "_"}], "}"}]}], "]"}]}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"could", " ", "change", " ", "domain"}], ",", " ", 
+        RowBox[{"currently", " ", "for", " ", 
+         RowBox[{"Canadian", " ", ".", "ca"}], " ", "domains"}]}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"finding", "=", 
+       RowBox[{
+        RowBox[{"ToString", "[", "x", "]"}], "<>", "\"\<,\>\"", "<>", 
+        RowBox[{"ToString", "[", "file", "]"}], "<>", "\"\<,\>\"", "<>", 
+        RowBox[{"ToString", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "[", "res", "]"}], "\[LeftDoubleBracket]", "2", 
+          "\[RightDoubleBracket]"}], "]"}], "<>", "\"\<\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"WriteString", "[", 
+       RowBox[{"str", ",", "finding"}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"x", "=", 
+       RowBox[{"x", "+", "1"}]}], ";"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"file", ",", "files"}], "}"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Close", "[", "str", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.580473401032812*^9, {3.580474037871277*^9, 3.580474133860882*^9}, {
+   3.580474340612702*^9, 3.580474414489016*^9}, 3.580549528746538*^9, {
+   3.580549574412776*^9, 3.580549591424859*^9}, {3.5805496240427227`*^9, 
+   3.580549642506212*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ProgressIndicator", "[", 
+   RowBox[{
+    RowBox[{"Dynamic", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{"Length", "[", "files", "]"}]}], "}"}]}], "]"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Progress", " ", "Indicator"}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.580474417225739*^9, 3.580474418463313*^9}, {
+  3.580474588158616*^9, 3.580474623882235*^9}, {3.5805496443324633`*^9, 
+  3.580549651108055*^9}}],
+
+Cell[BoxData[
+ ProgressIndicatorBox[Dynamic[$CellContext`x], {1, 8776}]], "Output",
+ CellChangeTimes->{3.5804746249840937`*^9, 3.5805495578489933`*^9, 
+  3.580549651816133*^9, 3.580549812182435*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", "x", "]"}]], "Input",
+ CellChangeTimes->{{3.580474669176107*^9, 3.5804746702274942`*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`x, StandardForm],
+  ImageSizeCache->{14., {1., 8.}}]], "Output",
+ CellChangeTimes->{3.580474670717319*^9, 3.58054955940714*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 1006},
+WindowMargins->{{16, Automatic}, {Automatic, 28}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 5, \
+2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 200, 4, 77, "Text"],
+Cell[760, 26, 2844, 71, 268, "Input"],
+Cell[CellGroupData[{
+Cell[3629, 101, 485, 12, 27, "Input"],
+Cell[4117, 115, 198, 3, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4352, 123, 128, 2, 27, "Input"],
+Cell[4483, 127, 174, 3, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
