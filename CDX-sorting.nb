@@ -1,0 +1,190 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6582,        181]
+NotebookOptionsPosition[      6151,        162]
+NotebookOutlinePosition[      6530,        179]
+CellTagsIndexPosition[      6487,        176]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CDX Index to Sorted List\n", "Title"],
+ StyleBox["Ian Milligan - 19 June 2013", "Subtitle"]
+}], "Text",
+ CellChangeTimes->{{3.580654065926839*^9, 3.580654075241012*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+   RowBox[{
+   "this", " ", "file", " ", "takes", " ", "the", " ", "CDX", " ", "results", 
+    " ", "generated", " ", "in", " ", "the", " ", "previous", " ", "script", 
+    " ", "and", " ", "then", " ", "sorts", " ", "them"}], ",", " ", 
+   RowBox[{
+   "converts", " ", "the", " ", "number", " ", "of", " ", "appearances", " ", 
+    "into", " ", "an", " ", "integer"}], ",", " ", 
+   RowBox[{"and", " ", "eventually", " ", "creates", " ", "a", " ", 
+    RowBox[{
+    "sortedlist", ".", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     "After"}], " ", "that"}], ",", " ", 
+   RowBox[{
+   "we", " ", "get", " ", "a", " ", "text", " ", "file", " ", "that", " ", 
+    "wget", " ", "can", " ", "parse", " ", "for", " ", "Internet", " ", 
+    "Archive", " ", 
+    RowBox[{"downloading", "."}]}]}], " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.580655634702927*^9, 3.58065566457377*^9}, {
+  3.580655726860476*^9, 3.580655739144671*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"list", "=", 
+    RowBox[{"ReadList", "[", 
+     RowBox[{"\"\</users/ianmilligan1/desktop/cdx-results.txt\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"Record", ",", "Record", ",", "Record"}], "}"}], ",", 
+      RowBox[{"RecordSeparators", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<,\>\"", ",", "\"\<\\n\>\""}], "}"}]}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"newlist", "=", 
+    RowBox[{"{", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"newlist", ",", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"ImportString", "[", 
+          RowBox[{
+           RowBox[{"StringReplace", "[", 
+            RowBox[{
+             RowBox[{"ToString", "[", 
+              RowBox[{
+              "list", "\[LeftDoubleBracket]", "x", "\[RightDoubleBracket]"}], 
+              "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"\"\<{\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+               RowBox[{"\"\<}\>\"", "\[Rule]", "\"\<\>\""}]}], "}"}]}], "]"}],
+            ",", "\"\<CSV\>\""}], "]"}], "]"}]}], "]"}], ";"}], 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"Range", "[", 
+        RowBox[{"1", ",", 
+         RowBox[{"Length", "[", "list", "]"}]}], "]"}]}], "}"}]}], "]"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sortedlist", "=", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"newlist", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"#1", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+        ">", 
+        RowBox[{
+        "#2", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]}], 
+       "&"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{
+     "\"\</users/ianmilligan1/desktop/cdx-sorted.txt\>\"", ",", 
+      "sortedlist"}], "]"}], ";"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.58065218264538*^9, 3.580652230087145*^9}, {
+   3.580652278041649*^9, 3.58065227853712*^9}, {3.580652318400679*^9, 
+   3.580652319832099*^9}, {3.580652352677368*^9, 3.58065235318836*^9}, {
+   3.5806524089291363`*^9, 3.580652461008008*^9}, {3.580653012515451*^9, 
+   3.580653029505241*^9}, 3.5806535326006317`*^9, 3.580653624207676*^9, {
+   3.580653928313819*^9, 3.580653953350175*^9}, {3.5806540292353153`*^9, 
+   3.580654060839614*^9}, {3.580654092560038*^9, 3.580654106861744*^9}, {
+   3.5806541476170177`*^9, 3.5806541497892227`*^9}, {3.580654250571802*^9, 
+   3.5806542527707663`*^9}, {3.580654323445547*^9, 3.580654336153035*^9}, {
+   3.580654393062861*^9, 3.580654457861841*^9}, {3.580654555248356*^9, 
+   3.580654576567915*^9}, {3.580654607029003*^9, 3.580654619847611*^9}, 
+   3.580655696588049*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Take", "[", 
+    RowBox[{"sortedlist", ",", "5"}], "]"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "change", " ", "based", " ", "on", " ", "number", " ", "of", " ", "WARCs", 
+    " ", "we", " ", "want", " ", "do", " ", "download"}], " ", "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wgetlist", "=", 
+   RowBox[{"StringTake", "[", 
+    RowBox[{
+     RowBox[{"sortedlist", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "29"}], "}"}]}], "]"}]}], " ", ";", 
+  RowBox[{"(*", 
+   RowBox[{
+   "generates", " ", "a", " ", "wget", " ", "list", " ", "that", " ", "can", 
+    " ", "then", " ", "be", " ", "exported", " ", "to", " ", "play", " ", 
+    RowBox[{"w", "/", " ", "them"}]}], "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.580654657384828*^9, 3.580654702131513*^9}, {
+  3.580655482582305*^9, 3.580655490039453*^9}, {3.5806556262334213`*^9, 
+  3.580655631083403*^9}, {3.580655693346243*^9, 3.580655719220127*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+   "\"\</users/ianmilligan1/desktop/wget-list.txt\>\"", ",", "wgetlist", ",", 
+    "\"\<Lines\>\""}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5806556979194393`*^9, 3.5806557237569637`*^9}}]
+},
+WindowSize->{677, 863},
+WindowMargins->{{Automatic, 490}, {Automatic, 17}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 20, \
+2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 196, 4, 98, "Text"],
+Cell[756, 26, 982, 20, 131, "Input"],
+Cell[1741, 48, 3066, 76, 267, "Input"],
+Cell[4810, 126, 1077, 26, 114, "Input"],
+Cell[5890, 154, 257, 6, 28, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
